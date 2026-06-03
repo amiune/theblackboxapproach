@@ -1,0 +1,43 @@
+{
+  "": {
+    "dependencies": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/BlackBoxApproachMac.d",
+    "object": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/BlackBoxApproachMac.o",
+    "swift-dependencies": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/primary.swiftdeps"
+  },
+  "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/AppState.swift": {
+    "object": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/AppState.swift.o",
+    "swiftmodule": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/AppState~partial.swiftmodule",
+    "swift-dependencies": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/AppState.swiftdeps",
+    "diagnostics": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/AppState.dia"
+  },
+  "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/BlackBoxApproachMacApp.swift": {
+    "object": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/BlackBoxApproachMacApp.swift.o",
+    "swiftmodule": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/BlackBoxApproachMacApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/BlackBoxApproachMacApp.swiftdeps",
+    "diagnostics": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/BlackBoxApproachMacApp.dia"
+  },
+  "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/ContentView.swift": {
+    "object": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/ContentView.swift.o",
+    "swiftmodule": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/ContentView~partial.swiftmodule",
+    "swift-dependencies": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/ContentView.swiftdeps",
+    "diagnostics": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/ContentView.dia"
+  },
+  "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/Models.swift": {
+    "object": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Models.swift.o",
+    "swiftmodule": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Models~partial.swiftmodule",
+    "swift-dependencies": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Models.swiftdeps",
+    "diagnostics": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Models.dia"
+  },
+  "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/NativeProject.swift": {
+    "object": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/NativeProject.swift.o",
+    "swiftmodule": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/NativeProject~partial.swiftmodule",
+    "swift-dependencies": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/NativeProject.swiftdeps",
+    "diagnostics": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/NativeProject.dia"
+  },
+  "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/Services.swift": {
+    "object": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Services.swift.o",
+    "swiftmodule": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Services~partial.swiftmodule",
+    "swift-dependencies": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Services.swiftdeps",
+    "diagnostics": "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Services.dia"
+  }
+}

@@ -1,0 +1,134 @@
+skill_name: blackboxapproach
+version: 1.0
+required_root: blackboxes
+invocation_required: true
+accepted_invocations:
+  - /blackboxapproach
+  - /skill blackboxapproach
+  - "@blackboxapproach"
+forbidden_required_root_files:
+  - AGENTS.md
+  - CLAUDE.md
+required_directories:
+  - skill
+  - boxes
+  - data
+  - schema
+  - visualizer
+  - docs
+  - prompts
+  - history
+box_types:
+  - logic
+  - view
+  - data_flow
+  - integration
+  - service
+states:
+  - abstract
+  - partial
+  - concrete
+provenance_values:
+  - human_defined
+  - ai_defined
+  - mixed
+provenance_transitions:
+  allowed:
+    - from: ai_defined
+      to: human_defined
+    - from: ai_defined
+      to: mixed
+    - from: mixed
+      to: human_defined
+    - from: human_defined
+      to: ai_defined
+      only_when: parent_conflict_exception_accepted_by_human
+    - from: human_defined
+      to: mixed
+      only_when: parent_conflict_exception_accepted_by_human
+  forbidden:
+    - from: human_defined
+      to: ai_defined
+      unless: parent_conflict_exception_accepted_by_human
+    - from: human_defined
+      to: mixed
+      unless: parent_conflict_exception_accepted_by_human
+parent_conflict_exception:
+  applies_when:
+    - parent_node_has_newer_human_defined_modification
+    - child_human_defined_decision_conflicts_with_parent_decision
+  required_before_change:
+    - warn_user_with_parent_decision_child_decision_paths_and_transition
+    - request_explicit_human_acceptance
+    - block_change_if_acceptance_is_not_provided
+  required_after_acceptance:
+    - update_child_to_ai_defined_or_mixed_only_as_needed_for_compliance
+    - add_ai_reasoning_explaining_parent_conflict_compliance
+    - record_conflict_warning_acceptance_and_files_in_provenance_log
+pseudocode_keywords:
+  - CALL
+  - IF
+  - ELSE
+  - FOR
+  - WHILE
+  - RETURN
+  - SET
+  - TRY
+  - CATCH
+  - END
+call_regex: "CALL\\s+([a-zA-Z0-9_]+)"
+focused_refinement:
+  selected_box: editable
+  descendants: editable
+  ancestors: read_only
+allowed_focused_changes:
+  - modify_selected_box
+  - modify_descendant_boxes
+  - create_new_descendant_boxes
+  - modify_referenced_data_structures_when_required
+  - update_related_docs
+  - update_generated_prompts
+forbidden_focused_changes:
+  - modify_ancestor_boxes
+  - change_parent_signatures_without_explicit_human_instruction
+  - remove_ancestor_child_relationships_above_selected_box
+  - delete_boxes_without_reference_check
+  - downgrade_human_defined_provenance_without_parent_conflict_acceptance
+  - introduce_ai_assumptions_without_ai_reasoning
+leaf_box_requirements:
+  definition: no_children_and_no_call_references
+  required_implementation_fields:
+    - implementation.language
+    - implementation.symbol
+    - implementation.code
+  code_requirement: executable_programming_code
+  forbidden:
+    - pseudocode_only
+    - placeholder_text_only
+validation_checks:
+  - invalid_yaml
+  - duplicate_ids
+  - missing_child_boxes
+  - orphan_boxes
+  - circular_references
+  - broken_data_references
+  - missing_data_references
+  - inline_data_structures_inside_box_signatures
+  - view_boxes_without_visual_design
+  - call_references_missing_from_children
+  - children_missing_from_call_references
+  - forbidden_provenance_transitions
+  - parent_child_human_definition_conflicts_requiring_acceptance
+  - leaf_boxes_without_executable_implementation_code
+  - loaded_git_status_changes_affecting_boxes_or_data_structures
+visualizer:
+  type: static_html_javascript
+  required_files:
+    - visualizer/index.html
+    - visualizer/app.js
+    - visualizer/style.css
+  no_llm_api: true
+  required_panels:
+    - tree
+    - selected_box_details
+    - prompt_builder

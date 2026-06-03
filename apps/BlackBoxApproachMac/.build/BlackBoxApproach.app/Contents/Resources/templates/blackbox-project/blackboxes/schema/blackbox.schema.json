@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blackboxapproach.local/schema/blackbox.schema.json",
+  "title": "BlackBoxApproach Black Box",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "kind",
+    "box_type",
+    "state",
+    "provenance",
+    "intent",
+    "algorithm",
+    "children"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "const": "black_box"
+    },
+    "box_type": {
+      "type": "string",
+      "enum": ["logic", "view", "data_flow", "integration", "service"]
+    },
+    "state": {
+      "type": "string",
+      "enum": ["abstract", "partial", "concrete"]
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    },
+    "human_summary": {
+      "type": "string"
+    },
+    "ai_reasoning": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "object",
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/port"
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/port"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "intent": {
+      "type": "string"
+    },
+    "algorithm": {
+      "type": "string"
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+      }
+    },
+    "contracts": {
+      "type": "object",
+      "properties": {
+        "preconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "postconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "invariants": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "implementation": {
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": ["string", "null"]
+        },
+        "path": {
+          "type": ["string", "null"]
+        },
+        "symbol": {
+          "type": ["string", "null"]
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "ai_reasoning": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "visual_design": {
+      "type": "string"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "box_type": {
+            "const": "view"
+          }
+        }
+      },
+      "then": {
+        "required": ["visual_design"]
+      }
+    }
+  ],
+  "additionalProperties": true,
+  "$defs": {
+    "provenance": {
+      "type": "string",
+      "enum": ["human_defined", "ai_defined", "mixed"]
+    },
+    "port": {
+      "type": "object",
+      "required": ["name", "provenance"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "data_ref": {
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "human_summary": {
+          "type": "string"
+        },
+        "ai_reasoning": {
+          "type": "string"
+        }
+      },
+      "not": {
+        "required": ["fields"]
+      },
+      "additionalProperties": true
+    }
+  }
+}

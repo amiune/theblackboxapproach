@@ -1,0 +1,22 @@
+id: blackbox_project
+name: New BlackBoxApproach Project
+kind: black_box_system
+version: 1.0
+root_box: ""
+source_of_truth: blackboxes
+provenance: human_defined
+human_summary: |
+  Blank BlackBoxApproach project.
+ai_reasoning: ""
+required_directories:
+  - boxes
+  - data
+  - docs
+  - history
+  - prompts
+  - schema
+  - skill
+  - visualizer
+notes:
+  - Add the root box under blackboxes/boxes/.
+  - Update root_box when the root box is created.

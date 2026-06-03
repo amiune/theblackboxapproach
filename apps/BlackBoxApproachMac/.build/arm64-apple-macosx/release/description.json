@@ -1,0 +1,328 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.BlackBoxApproachMac-arm64-apple-macosx-release.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/sources",
+      "importPath" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/AppState.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/BlackBoxApproachMacApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/ContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/Models.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/NativeProject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/Services.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "BlackBoxApproachMac",
+      "moduleOutputPath" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/Modules/BlackBoxApproachMac.swiftmodule",
+      "objects" : [
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/AppState.swift.o",
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/BlackBoxApproachMacApp.swift.o",
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/ContentView.swift.o",
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Models.swift.o",
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/NativeProject.swift.o",
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Services.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-whole-module-optimization",
+        "-num-threads",
+        "8",
+        "-serialize-diagnostics",
+        "-O",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "BlackBoxApproachMac_main",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "blackboxapproachmac"
+      ],
+      "outputFileMapPath" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/AppState.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/BlackBoxApproachMacApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/ContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Models.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/NativeProject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Services.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/Modules/BlackBoxApproachMac.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/AppState.swift",
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/BlackBoxApproachMacApp.swift",
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/ContentView.swift",
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/Models.swift",
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/NativeProject.swift",
+        "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/Services.swift"
+      ],
+      "tempsPath" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build",
+      "wholeModuleOptimization" : true
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "BlackBoxApproachMac" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "BlackBoxApproachMac",
+      "-package-name",
+      "blackboxapproachmac",
+      "-c",
+      "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/AppState.swift",
+      "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/BlackBoxApproachMacApp.swift",
+      "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/ContentView.swift",
+      "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/Models.swift",
+      "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/NativeProject.swift",
+      "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/Services.swift",
+      "-I",
+      "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-whole-module-optimization",
+      "-num-threads",
+      "8",
+      "-serialize-diagnostics",
+      "-O",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "BlackBoxApproachMac_main",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "blackboxapproachmac",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "BlackBoxApproachMac" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/AppState.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/BlackBoxApproachMacApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/ContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/Models.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/NativeProject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/Sources/BlackBoxApproachMac/Services.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/sources"
+    },
+    "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/AppState.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/BlackBoxApproachMacApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/ContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Models.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/NativeProject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.build/Services.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/BlackBoxApproachMac.product/Objects.LinkFileList"
+    },
+    "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/hernanamiune/Documents/theblackboxapproach/apps/BlackBoxApproachMac/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

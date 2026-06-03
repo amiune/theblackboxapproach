@@ -1,0 +1,8 @@
+entries:
+  - timestamp: "2026-06-02T00:00:00Z"
+    actor: blackboxapproach_template
+    action: initialized_template_history
+    affected_files:
+      - blackboxes/history/provenance_log.yaml
+    summary: Initialized the provenance log template.
+    provenance_notes: Replace or append entries when a project is generated or modified.
