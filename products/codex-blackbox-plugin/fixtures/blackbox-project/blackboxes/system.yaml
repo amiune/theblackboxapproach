@@ -1,0 +1,7 @@
+id: quote_engine
+name: Quote Engine
+kind: black_box_system
+version: 1.0
+root_box: quote_order
+provenance: ai_defined
+human_summary: Synthetic architecture fixture for the BlackBox Project plugin.

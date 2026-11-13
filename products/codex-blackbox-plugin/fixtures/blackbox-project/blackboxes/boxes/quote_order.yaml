@@ -1,0 +1,26 @@
+id: quote_order
+name: Quote order
+kind: black_box
+box_type: logic
+state: partial
+provenance: ai_defined
+intent: Coordinate item validation and total calculation.
+signature:
+  inputs:
+    - name: request
+      data_ref: ../data/quote_request.yaml
+  outputs:
+    - name: quote
+      data_ref: ../data/quote.yaml
+algorithm: |
+  CALL validate_items(request)
+  CALL calculate_total(request)
+  RETURN quote
+children:
+  - validate_items
+  - calculate_total
+contracts:
+  preconditions:
+    - request contains line items
+  postconditions:
+    - quote total is nonnegative

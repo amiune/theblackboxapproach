@@ -1,0 +1,6 @@
+{
+  "name": "orderflow-visualizer-fixture",
+  "private": true,
+  "type": "module",
+  "description": "Synthetic local codebase for a visualization demonstration"
+}

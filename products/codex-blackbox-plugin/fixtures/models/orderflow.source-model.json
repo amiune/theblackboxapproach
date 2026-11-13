@@ -1,0 +1,397 @@
+{
+  "version": 1,
+  "project": {
+    "name": "Orderflow",
+    "summary": "From checkout to confirmation. Explore the responsibilities, source evidence, and data behind every handoff.",
+    "mode": "observed",
+    "coverage": "Synthetic example · Inspected README and all 8 source modules. Source relationships only; runtime not instrumented."
+  },
+  "nodes": [
+    {
+      "id": "checkout",
+      "label": "Checkout handler",
+      "kind": "entry point",
+      "description": "Accepts a request, validates it, and returns the order service result.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/checkout.js",
+          "line": 5,
+          "symbol": "submitOrder"
+        }
+      ],
+      "inputs": [
+        "OrderRequest"
+      ],
+      "outputs": [
+        "Order"
+      ]
+    },
+    {
+      "id": "validation",
+      "label": "Order validation",
+      "kind": "validation",
+      "description": "Checks that an order has items and a contact email, then calculates its total.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/validation.js",
+          "line": 2,
+          "symbol": "validateOrder"
+        }
+      ],
+      "inputs": [
+        "OrderRequest"
+      ],
+      "outputs": [
+        "ValidatedOrder"
+      ]
+    },
+    {
+      "id": "orders",
+      "label": "Order service",
+      "kind": "orchestration",
+      "description": "Coordinates stock reservation, payment recording, persistence, and confirmation.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 7,
+          "symbol": "createOrder"
+        }
+      ],
+      "inputs": [
+        "ValidatedOrder"
+      ],
+      "outputs": [
+        "Order"
+      ]
+    },
+    {
+      "id": "inventory",
+      "label": "Inventory",
+      "kind": "service",
+      "description": "Creates a local reservation containing the requested item SKUs.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/inventory.js",
+          "line": 4,
+          "symbol": "reserveInventory"
+        }
+      ],
+      "inputs": [
+        "ValidatedOrder"
+      ],
+      "outputs": [
+        "Reservation"
+      ]
+    },
+    {
+      "id": "payments",
+      "label": "Payments",
+      "kind": "integration",
+      "description": "Records a synthetic payment receipt for the validated total. No payment is transmitted.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/payments.js",
+          "line": 4,
+          "symbol": "chargePayment"
+        }
+      ],
+      "inputs": [
+        "ValidatedOrder"
+      ],
+      "outputs": [
+        "PaymentReceipt"
+      ]
+    },
+    {
+      "id": "store",
+      "label": "Order repository",
+      "kind": "storage",
+      "description": "Stores a copy of each order in an in-memory Map and returns the saved record.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/store.js",
+          "line": 4,
+          "symbol": "saveOrder"
+        }
+      ],
+      "inputs": [
+        "Order"
+      ],
+      "outputs": [
+        "Order"
+      ]
+    },
+    {
+      "id": "notifications",
+      "label": "Confirmation outbox",
+      "kind": "notification",
+      "description": "Appends a confirmation record to a local outbox. No message is sent.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/notifications.js",
+          "line": 4,
+          "symbol": "sendConfirmation"
+        }
+      ],
+      "inputs": [
+        "Order"
+      ],
+      "outputs": []
+    }
+  ],
+  "dataStructures": [
+    {
+      "id": "OrderRequest",
+      "label": "Order request",
+      "description": "The payload supplied to checkout.",
+      "evidence": "documented",
+      "sources": [
+        {
+          "path": "src/types.js",
+          "line": 2,
+          "symbol": "OrderRequest"
+        }
+      ],
+      "fields": [
+        {
+          "name": "items",
+          "type": "Array<{sku: string, quantity: number, unitPrice: number}>"
+        },
+        {
+          "name": "email",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "id": "ValidatedOrder",
+      "label": "Validated order",
+      "description": "Checked items, contact email, and a calculated total.",
+      "evidence": "documented",
+      "sources": [
+        {
+          "path": "src/types.js",
+          "line": 8,
+          "symbol": "ValidatedOrder"
+        }
+      ],
+      "fields": [
+        {
+          "name": "items",
+          "type": "Array<{sku: string, quantity: number, unitPrice: number}>"
+        },
+        {
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "name": "total",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "id": "Reservation",
+      "label": "Stock reservation",
+      "description": "The local reservation created by inventory.",
+      "evidence": "documented",
+      "sources": [
+        {
+          "path": "src/types.js",
+          "line": 15,
+          "symbol": "Reservation"
+        }
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "skus",
+          "type": "string[]"
+        }
+      ]
+    },
+    {
+      "id": "PaymentReceipt",
+      "label": "Payment receipt",
+      "description": "A synthetic receipt recorded by the payment module.",
+      "evidence": "documented",
+      "sources": [
+        {
+          "path": "src/types.js",
+          "line": 21,
+          "symbol": "PaymentReceipt"
+        }
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "number"
+        },
+        {
+          "name": "status",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "id": "Order",
+      "label": "Order",
+      "description": "The persisted order returned to checkout and used by the confirmation outbox.",
+      "evidence": "documented",
+      "sources": [
+        {
+          "path": "src/types.js",
+          "line": 28,
+          "symbol": "Order"
+        }
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "name": "total",
+          "type": "number"
+        },
+        {
+          "name": "reservationId",
+          "type": "string"
+        },
+        {
+          "name": "paymentId",
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "checkout",
+      "target": "validation",
+      "type": "calls",
+      "label": "validate",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/checkout.js",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "source": "checkout",
+      "target": "orders",
+      "type": "calls",
+      "label": "create order",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/checkout.js",
+          "line": 7
+        }
+      ]
+    },
+    {
+      "source": "orders",
+      "target": "inventory",
+      "type": "calls",
+      "label": "reserve",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "source": "orders",
+      "target": "payments",
+      "type": "calls",
+      "label": "record payment",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "source": "orders",
+      "target": "store",
+      "type": "calls",
+      "label": "persist",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "source": "orders",
+      "target": "notifications",
+      "type": "calls",
+      "label": "confirm",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 18
+        }
+      ]
+    },
+    {
+      "source": "Reservation",
+      "target": "orders",
+      "type": "consumes",
+      "label": "reservation result",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "source": "PaymentReceipt",
+      "target": "orders",
+      "type": "consumes",
+      "label": "receipt result",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 15
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}

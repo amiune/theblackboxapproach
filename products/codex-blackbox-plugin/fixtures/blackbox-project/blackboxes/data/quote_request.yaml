@@ -1,0 +1,8 @@
+id: QuoteRequest
+kind: data_structure
+provenance: ai_defined
+fields:
+  - name: items
+    type: "{quantity: number, unitPrice: number}[]"
+  - name: currency
+    type: string

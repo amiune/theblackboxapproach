@@ -1,0 +1,4 @@
+interface:
+  display_name: "BlackBox Project"
+  short_description: "Map behavior, data, and user/AI decisions"
+  default_prompt: "Use $blackbox-project to visualize this whole project as recursive input → process → output boxes with data structures and evidence for user and AI decisions."

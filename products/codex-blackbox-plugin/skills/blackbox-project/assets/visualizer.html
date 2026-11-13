@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="blackbox-artifact" content="codex-blackbox/1">
+  <title>BlackBox Project</title>
+  <style>
+    :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#232d29;background:#fafbf8;font-synthesis:none;--ink:#232d29;--muted:#748078;--line:#dfe5db;--green:#226b55;--human:#245ba6;--ai:#936011;--mixed:#7957a1}
+    *{box-sizing:border-box}body{margin:0}button,input,select,summary{font:inherit}button,summary{cursor:pointer}button{color:inherit;background:white;border:1px solid var(--line);border-radius:8px;padding:8px 12px}button:hover{background:#f0f5ec}button:disabled{opacity:.45;cursor:default}button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid #348b68;outline-offset:4px}[hidden]{display:none!important}h1,h2,h3,p{margin-top:0}code{font-size:12px;overflow-wrap:anywhere}.muted{color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .header{height:82px;padding:0 36px;display:flex;align-items:center;gap:15px;border-bottom:1px solid #e9ede4;background:#fff}.mark{height:28px;width:28px;border:2px solid var(--ink);border-radius:7px;display:grid;place-items:center;flex:none}.mark:after{content:"";height:8px;width:8px;background:var(--ink);border-radius:2px}.project-name{font-size:18px;letter-spacing:-.4px;font-weight:600;margin:0;overflow-wrap:anywhere}.menu{margin-left:auto;position:relative;flex:none;z-index:8}.menu>summary{list-style:none;padding:9px 15px;border:1px solid var(--line);border-radius:8px;font-size:12px;background:white}.menu>summary::-webkit-details-marker{display:none}.menu[open]>summary{background:#f1f5ec}.menu-items{position:absolute;right:0;top:48px;width:216px;padding:7px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 36px #24352714}.menu-items>button{display:block;width:100%;text-align:left;border:0;font-size:12px;padding:11px}.menu-divider{height:1px;background:var(--line);margin:6px}.zoom-controls{display:flex;align-items:center;gap:6px;padding:4px}.zoom-controls button{flex:1;font-size:12px}.zoom-controls output{font-size:11px;min-width:39px;text-align:center;color:var(--muted)}
+    .navigation{display:flex;align-items:center;gap:12px;padding:18px 36px 0;min-height:58px}.navigation>button{border:0;padding:6px 8px;font-size:12px;background:transparent;color:var(--green)}.breadcrumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;min-width:0}.breadcrumbs button{border:0;background:transparent;font-size:12px;color:var(--muted);padding:5px 6px;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.breadcrumbs button[aria-current]{color:var(--ink)}.scope-details{margin-left:auto!important}.stage{position:relative;min-height:calc(100vh - 82px)}.canvas-wrap{height:calc(100vh - 140px);min-height:540px;}.with-card .canvas-wrap{margin-right:390px}.canvas{height:100%;width:100%;display:block;touch-action:none;cursor:grab}.canvas.panning{cursor:grabbing}.diagram-node{cursor:pointer;outline:none}.diagram-node .node-shape{fill:#fff;stroke:#d4ded0;stroke-width:1.3}.diagram-node:hover .node-shape,.diagram-node:focus-visible .node-shape{stroke:#438d6b;stroke-width:2}.diagram-node.process-node .node-shape{fill:var(--ink);stroke:var(--ink)}.diagram-node.process-node:hover .node-shape,.diagram-node.process-node:focus-visible .node-shape{fill:#355144;stroke:#438d6b}.node-label{font-size:16px;font-weight:500;fill:var(--ink)}.process-node .node-label{fill:#fff}.node-caption{font-size:10px;letter-spacing:1.2px;fill:#788576}.process-node .node-caption{fill:#b1c7b7}.diagram-link{fill:none;stroke:#a9b9a5;stroke-width:1.5}.scope-frame{fill:#f4f7ef;stroke:#e1e8d9;stroke-width:1;rx:18}.scope-name{fill:#71816a;font-size:11px}.edge-label{font-size:10px;fill:#6c7c65;paint-order:stroke;stroke:#f4f7ef;stroke-width:5px}.hint{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#899180;font-size:12px;pointer-events:none;margin:0}.with-card .hint{right:390px}.empty-state{text-align:center;padding:90px 30px;color:var(--muted);font-size:14px}.load-error{padding:15px 36px;background:#fff2e9;color:#934b21;font-size:13px}
+    .detail-card{position:absolute;top:20px;right:25px;width:345px;max-height:calc(100vh - 125px);overflow:auto;border:1px solid #dde4d6;background:#fff;border-radius:16px;box-shadow:0 15px 65px #29432612;z-index:4;padding:23px}.card-top{display:flex;gap:12px;align-items:center;margin-bottom:15px}.card-kind{font-size:10px;text-transform:uppercase;letter-spacing:.11em;color:var(--muted);flex:1}.card-close{border:0;font-size:18px;padding:3px 8px;background:transparent}.card-back{border:0;padding:4px 0;background:transparent;color:var(--green);font-size:12px}.detail-card h2{font-size:22px;letter-spacing:-.5px;margin:0 0 16px;overflow-wrap:anywhere}.detail-card p{font-size:12px;line-height:1.65;overflow-wrap:anywhere}.detail-card details{margin-top:10px;border-top:1px solid #e5eadf;padding-top:10px}.detail-card summary{font-size:12px;line-height:1.5;overflow-wrap:anywhere}.section-content{padding:12px 0 3px}.detail-card .field{padding:12px 0 0;margin-top:0}.field summary{display:flex;align-items:baseline;gap:8px;justify-content:space-between}.field-name{font-weight:500}.field summary code{color:var(--muted);font-size:11px;text-align:right;max-width:70%;white-space:normal}.field summary:before{content:"+";color:var(--muted)}.field[open]>summary:before{content:"−"}.field summary .field-name{flex:1}.type-link{display:block;text-align:left;color:var(--green);border:0;padding:5px 0;background:transparent;font-size:12px;overflow-wrap:anywhere}.port-row{padding:8px 0;border-bottom:1px solid #e8eddf;font-size:12px}.port-row strong{display:block;font-weight:500;margin-bottom:4px}.port-row>small{display:block;color:var(--muted);font-size:11px}.badge{display:inline-block;border-radius:4px;padding:4px 6px;font-size:10px;background:#f0f3ec;color:#62705e;margin:0 5px 7px 0}.badge.human_defined{background:#edf2fb;color:var(--human)}.badge.ai_defined{background:#fbf1df;color:var(--ai)}.badge.mixed{background:#f2edf8;color:var(--mixed)}.decision{margin:10px 0 17px;border-left:2px solid #dbe5d2;padding-left:12px}.decision p{margin-bottom:5px}.source{margin:0 0 13px;overflow-wrap:anywhere}.source small{display:block;font-size:10px;color:var(--muted);margin-top:5px}.source blockquote{margin:8px 0;padding-left:10px;border-left:2px solid #e2e8da;font-size:11px;line-height:1.6;color:#68765f}.detail-card pre{font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere}.related-row{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin:8px 0}.related-row small{font-size:10px;color:var(--muted)}.note-list{padding-left:18px}.note-list li{font-size:12px;line-height:1.7;margin-bottom:7px;overflow-wrap:anywhere}
+    dialog{border:1px solid var(--line);border-radius:16px;width:calc(100% - 36px);max-width:580px;max-height:80vh;padding:26px;overflow:auto;box-shadow:0 25px 100px #1c39252b}dialog::backdrop{background:#1f302945}dialog h2{font-size:21px;margin-bottom:14px}dialog p{font-size:13px;line-height:1.7;color:#68765f}dialog>button{float:right;font-size:12px}.search-input{display:block;border:1px solid #d7e0d0;border-radius:8px;width:100%;padding:12px;font-size:14px}.search-filters{display:flex;gap:12px;margin:14px 0;flex-wrap:wrap}.search-filters label{font-size:11px;color:var(--muted);flex:1;min-width:160px}.search-filters select{display:block;border:1px solid var(--line);border-radius:6px;background:white;padding:7px;margin-top:5px;width:100%;font-size:12px}.search-results{margin-top:14px;max-height:42vh;overflow:auto}.search-result{display:block;border:0;border-bottom:1px solid #edf0e6;border-radius:0;text-align:left;width:100%;padding:13px 5px;font-size:13px}.search-result small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.about-details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}.about-details summary{font-size:13px}.about-details ul{padding-left:18px}.about-details li{font-size:12px;line-height:1.7;overflow-wrap:anywhere}.empty-message{font-size:12px;color:var(--muted);padding:15px 0}
+    @media(max-width:1050px){.with-card .canvas-wrap{margin-right:345px}.detail-card{width:310px;right:16px}.with-card .hint{right:345px}}@media(max-width:760px){.header{height:70px;padding:0 20px}.project-name{font-size:16px}.stage{min-height:calc(100vh - 70px)}.navigation{padding:13px 14px 0;gap:4px}.breadcrumbs button{max-width:145px}.canvas-wrap,.with-card .canvas-wrap{height:calc(100vh - 125px);min-height:490px;margin-right:0}.with-card .hint{right:0}.detail-card{position:fixed;top:auto;bottom:12px;right:12px;left:12px;width:auto;max-height:63vh;padding:20px;box-shadow:0 -10px 70px #263e292b}.hint{bottom:14px;font-size:11px}.scope-details{font-size:11px!important}.header .menu-items{width:204px}.mark{height:24px;width:24px}.card-top{position:sticky;top:-20px;padding-top:10px;background:white;z-index:2}.detail-card h2{font-size:20px}}
+  </style>
+</head>
+<body>
+  <div id="load-error" class="load-error" role="alert" hidden></div>
+  <header class="header"><span class="mark" aria-hidden="true"></span><h1 id="project-title" class="project-name">BlackBox Project</h1><details id="more-menu" class="menu"><summary aria-label="More options">More ···</summary><div class="menu-items"><button id="find-button" type="button">Find a process or data</button><button id="about-button" type="button">About this project</button><div class="menu-divider"></div><button id="overview-button" type="button">Return to overview</button><button id="fit" type="button">Fit diagram</button><div class="zoom-controls"><button id="zoom-out" type="button" aria-label="Zoom out">−</button><output id="zoom-value" aria-label="Zoom level">100%</output><button id="zoom-in" type="button" aria-label="Zoom in">+</button></div></div></details></header>
+  <main class="stage" id="stage"><nav class="navigation" id="navigation" aria-label="Process navigation" hidden><button id="back" type="button">← Back</button><div id="breadcrumbs" class="breadcrumbs"></div><button id="scope-details" class="scope-details" type="button">Details</button></nav><div class="canvas-wrap" id="graph-board"><svg id="graph" class="canvas" role="group" aria-label="Input, process, and output diagram" tabindex="0"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a1b49a"/></marker></defs><g id="scene"></g></svg><div id="empty-state" class="empty-state" hidden>No process is documented in this snapshot. Use More to find available data.</div></div><p id="hint" class="hint">Click a process or data to explore</p><aside id="detail-card" class="detail-card" role="dialog" aria-modal="false" aria-labelledby="card-title" hidden><div class="card-top"><button id="card-back" class="card-back" type="button" hidden>← Back</button><span id="card-kind" class="card-kind"></span><button id="card-close" class="card-close" type="button" aria-label="Close details">×</button></div><h2 id="card-title" tabindex="-1"></h2><div id="card-content"></div></aside></main>
+  <dialog id="find-dialog" aria-labelledby="find-title"><button id="close-find" type="button">Close</button><h2 id="find-title">Find a process or data</h2><label class="sr-only" for="search">Search the project</label><input id="search" class="search-input" type="search" placeholder="Search names, fields, or decisions…"><div class="search-filters"><label>Decision origin<select id="owner-filter"><option value="all">Any origin</option><option value="human_defined">User</option><option value="ai_defined">AI</option><option value="mixed">Mixed</option><option value="unknown">Unknown</option></select></label><label>Evidence<select id="evidence-filter"><option value="all">Any evidence</option><option>observed</option><option>documented</option><option>inferred</option><option>proposed</option><option>unknown</option></select></label></div><div id="search-results" class="search-results"></div></dialog>
+  <dialog id="about-dialog" aria-labelledby="about-title"><button id="close-about" type="button">Close</button><h2 id="about-title">About this project</h2><div id="about-content"></div></dialog>
+  <script id="project-model" type="application/json">{"format":"codex-blackbox","version":1,"project":{"name":"BlackBox Project"},"boxes":[],"dataStructures":[],"decisions":[],"edges":[],"coverage":{},"warnings":[]}</script>
+  <script>
+  (() => {
+    "use strict";
+    const $ = id => document.getElementById(id);
+    const list = value => Array.isArray(value) ? value : [];
+    const text = value => value == null ? "" : String(value);
+    const names = {human_defined:"User", ai_defined:"AI", mixed:"Mixed", unknown:"Unknown"};
+    const origin = value => Object.hasOwn(names, value) ? value : "unknown";
+    const el = (tag, className, value) => {const node=document.createElement(tag);if(className)node.className=className;if(value!=null)node.textContent=text(value);return node;};
+    const svg = (tag, attributes, value) => {const node=document.createElementNS("http://www.w3.org/2000/svg",tag);for(const [key,v] of Object.entries(attributes||{}))node.setAttribute(key,text(v));if(value!=null)node.textContent=text(value);return node;};
+    function button(label, action, className) {const node=el("button",className,label);node.type="button";node.addEventListener("click",action);return node;}
+    const badge=(label,kind)=>el("span",`badge ${kind||""}`,label);
+    let raw;
+    try {raw=JSON.parse($("project-model").textContent);if(raw?.format!=="codex-blackbox"||raw.version!==1)throw Error("Expected codex-blackbox model version 1.");}
+    catch(error){$("load-error").hidden=false;$("load-error").textContent=`The project model could not be read. ${error.message}`;raw={project:{name:"Model unavailable"},warnings:[error.message]};}
+    const notes=list(raw.warnings).map(text),entities=new Map(),decisions=new Map(),boxes=[],data=[];
+    for(const choice of list(raw.decisions)){if(choice&&typeof choice.id==="string"){if(decisions.has(choice.id))notes.push(`Duplicate decision: ${choice.id}`);else decisions.set(choice.id,choice);}}
+    for(const [records,category,target] of [[raw.boxes,"box",boxes],[raw.dataStructures,"data",data]])for(const record of list(records)){
+      if(!record||typeof record.id!=="string"||!record.id){notes.push("An entity without an ID was skipped.");continue;}
+      if(entities.has(record.id)){notes.push(`Duplicate entity: ${record.id}`);continue;}
+      const item={...record,label:text(record.label)||record.id,description:text(record.description),category,
+        provenance:origin(record.provenance),children:list(record.children).filter(id=>typeof id==="string"),
+        inputs:list(record.inputs).filter(p=>p&&typeof p.name==="string"),outputs:list(record.outputs).filter(p=>p&&typeof p.name==="string"),
+        fields:list(record.fields).filter(f=>f&&typeof f.name==="string"),sources:list(record.sources),decisionIds:list(record.decisionIds)};
+      entities.set(item.id,item);target.push(item);
+    }
+    const edges=[],edgeKeys=new Set();
+    function addEdge(edge){if(!edge||!entities.has(edge.source)||!entities.has(edge.target)){notes.push(`Unresolved relationship: ${text(edge?.source)} → ${text(edge?.target)}`);return;}const key=JSON.stringify([edge.source,edge.target,edge.type]);if(edgeKeys.has(key))return;edgeKeys.add(key);edges.push({...edge,label:text(edge.label)||text(edge.type).replaceAll("_"," ")});}
+    for(const edge of list(raw.edges))addEdge(edge);
+    for(const box of boxes){for(const child of box.children)if(entities.get(child)?.category!=="box")notes.push(`Missing child: ${child}`);
+      for(const [direction,type]of[["inputs","consumes"],["outputs","produces"]])for(const port of box[direction])if(port.dataStructure)addEdge({source:direction==="inputs"?port.dataStructure:box.id,target:direction==="inputs"?box.id:port.dataStructure,type,label:port.name,evidence:port.evidence});}
+    for(const item of data)for(const field of item.fields)if(field.dataStructure)addEdge({source:item.id,target:field.dataStructure,type:"references",label:field.name,evidence:field.evidence});
+    let root=entities.get(raw.project?.rootBox)?.category==="box"?raw.project.rootBox:boxes[0]?.id||null;
+    if(raw.project?.rootBox&&!entities.has(raw.project.rootBox))notes.push("The declared root is missing; the first available process is shown.");
+    const state={frames:root?[{id:root,mode:"overview",camera:null,returnKey:null}]:[],camera:{x:0,y:0,scale:1},bounds:{width:900,height:400},pan:null,cardTrail:[],cardOrigin:null,interacted:false};
+    const frame=()=>state.frames.at(-1),graph=$("graph"),scene=$("scene"),board=$("graph-board");
+    $("project-title").textContent=raw.project?.name||"Project";document.title=`${raw.project?.name||"Project"} · BlackBox Project`;
+    const choiceRecords=record=>list(record.decisionIds).map(id=>decisions.get(id)).filter(Boolean);
+    function interact(){state.interacted=true;$("hint").hidden=true;}
+    function focusKey(key){if(!key)return;requestAnimationFrame(()=>[...document.querySelectorAll("[data-focus-key]")].find(node=>node.dataset.focusKey===key)?.focus({preventScroll:true}));}
+    function saveCamera(){if(frame())frame().camera={...state.camera};}
+    function drill(id,key){
+      interact();const item=entities.get(id);if(!item){showCard({kind:"missing",id},key);return;}
+      if(item.category==="data"){showCard({kind:"entity",id},key);return;}
+      if(!item.children.length){showCard({kind:"entity",id},key);return;}
+      const existing=state.frames.findIndex(f=>f.id===id&&f.mode==="children");
+      if(existing===state.frames.length-1&&existing>=0){showCard({kind:"entity",id},key);return;}
+      if(existing>=0){navigate(existing);return;}
+      saveCamera();closeCard(false);state.frames.push({id,mode:"children",camera:null,returnKey:key});renderDiagram();
+      focusKey(`process:${item.children.find(child=>entities.has(child))||id}`);
+    }
+    function navigate(index){
+      interact();saveCamera();closeCard(false);const departed=frame();state.frames.length=index+1;renderDiagram(true);focusKey(departed?.returnKey);
+    }
+    function goBack(){if(state.frames.length>1)navigate(state.frames.length-2);}
+    function overview(){interact();closeCard(false);if(root){state.frames=[{id:root,mode:"overview",camera:null,returnKey:null}];renderDiagram();focusKey(`process:${root}`);}}
+    function wrap(value,width=26,limit=2){const chunks=text(value).match(new RegExp(`.{1,${width}}(?:\\s|$)|.{1,${width}}`,"g"))||[""];const lines=chunks.map(s=>s.trim()).filter(Boolean);if(lines.length>limit){lines.length=limit;lines[limit-1]=lines[limit-1].slice(0,width-1)+"…";}return lines;}
+    function camera(){scene.setAttribute("transform",`translate(${state.camera.x} ${state.camera.y}) scale(${state.camera.scale})`);$("zoom-value").textContent=`${Math.round(state.camera.scale*100)}%`;}
+    function fit(){if(!board.clientWidth||!board.clientHeight)return;const scale=Math.min(1.15,Math.max(.001,Math.min((board.clientWidth-36)/state.bounds.width,(board.clientHeight-65)/state.bounds.height)));state.camera={scale,x:(board.clientWidth-state.bounds.width*scale)/2,y:(board.clientHeight-state.bounds.height*scale)/2-8};camera();saveCamera();}
+    function zoom(factor,cx=board.clientWidth/2,cy=board.clientHeight/2){const before=state.camera.scale,after=Math.min(3,Math.max(.001,before*factor));state.camera.x=cx-(cx-state.camera.x)*after/before;state.camera.y=cy-(cy-state.camera.y)*after/before;state.camera.scale=after;camera();saveCamera();}
+    // Iterative connected-component grouping keeps cyclic and deep models finite.
+    function childLayout(items,links,vertical){
+      const ids=items.map(item=>item.id),adj=new Map(ids.map(id=>[id,[]])),reverse=new Map(ids.map(id=>[id,[]]));
+      for(const edge of links){adj.get(edge.source).push(edge.target);reverse.get(edge.target).push(edge.source);}
+      const visited=new Set(),order=[];
+      for(const id of ids){if(visited.has(id))continue;const stack=[[id,false]];while(stack.length){const[at,done]=stack.pop();if(done){order.push(at);continue;}if(visited.has(at))continue;visited.add(at);stack.push([at,true]);for(const next of adj.get(at))if(!visited.has(next))stack.push([next,false]);}}
+      const groups=new Map(),components=[];
+      for(const id of order.toReversed()){if(groups.has(id))continue;const index=components.length,group=[],stack=[id];while(stack.length){const at=stack.pop();if(groups.has(at))continue;groups.set(at,index);group.push(at);for(const next of reverse.get(at))if(!groups.has(next))stack.push(next);}components.push(group);}
+      const outgoing=components.map(()=>new Set()),degree=components.map(()=>0),levels=components.map(()=>0);
+      for(const edge of links){const a=groups.get(edge.source),b=groups.get(edge.target);if(a!==b&&!outgoing[a].has(b)){outgoing[a].add(b);degree[b]++;}}
+      const queue=degree.flatMap((n,i)=>n===0?[i]:[]);for(let i=0;i<queue.length;i++)for(const next of outgoing[queue[i]]){levels[next]=Math.max(levels[next],levels[queue[i]]+1);if(--degree[next]===0)queue.push(next);}
+      const columns=new Map();for(const item of items){const level=levels[groups.get(item.id)];if(!columns.has(level))columns.set(level,[]);columns.get(level).push(item);}
+      const result=new Map();let position=0,width=0,height=0;
+      for(const[,column]of[...columns].sort((a,b)=>a[0]-b[0])){
+        if(vertical){for(const item of column){result.set(item.id,{x:30,y:position+45,width:220,height:84});position+=116;}width=280;height=position+60;}
+        else{column.forEach((item,i)=>result.set(item.id,{x:position+30,y:45+i*116,width:220,height:84}));position+=276;width=position+4;height=Math.max(height,column.length*116+60);}
+      }
+      return{positions:result,width:Math.max(280,width),height:Math.max(180,height)};
+    }
+    function drawNode(id,label,caption,position,action,kind,key){
+      const node=svg("g",{class:`diagram-node ${kind==="process"?"process-node":"boundary-node"}`,transform:`translate(${position.x} ${position.y})`,role:"button",tabindex:0,"aria-label":`${caption}: ${label}`,"data-focus-key":key,"data-entity":id,"data-part":kind});
+      node.append(svg("title",{},label),svg("rect",{class:"node-shape",width:position.width,height:position.height,rx:12}),svg("text",{x:20,y:25,class:"node-caption"},caption.toUpperCase()));
+      wrap(label,kind==="process"?24:21,2).forEach((line,i)=>node.append(svg("text",{x:20,y:52+i*20,class:"node-label"},line)));
+      node.addEventListener("click",()=>action(key));node.addEventListener("keydown",event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();action(key);}});scene.append(node);return node;
+    }
+    function lineBetween(a,b,vertical,attributes={}){let path;if(vertical){const sx=a.x+a.width/2,sy=a.y+a.height,ex=b.x+b.width/2,ey=b.y;path=`M ${sx} ${sy} C ${sx} ${(sy+ey)/2},${ex} ${(sy+ey)/2},${ex} ${ey}`;}else{const sx=a.x+a.width,sy=a.y+a.height/2,ex=b.x,ey=b.y+b.height/2;path=`M ${sx} ${sy} C ${(sx+ex)/2} ${sy},${(sx+ex)/2} ${ey},${ex} ${ey}`;}scene.append(svg("path",{d:path,class:"diagram-link","marker-end":"url(#arrow)",...attributes}));}
+    function renderDiagram(restore=false){
+      const activeKey=graph.contains(document.activeElement)?document.activeElement.dataset.focusKey:null;
+      scene.replaceChildren();const current=frame(),item=entities.get(current?.id);$("empty-state").hidden=!!item;graph.hidden=!item;$("hint").hidden=state.interacted||!item;
+      $("navigation").hidden=state.frames.length<2;const crumbs=$("breadcrumbs");crumbs.replaceChildren();
+      if(state.frames.length>1){for(let i=1;i<state.frames.length;i++){if(i>1)crumbs.append(el("span","muted","/"));const f=state.frames[i],b=button(entities.get(f.id)?.label||f.id,()=>navigate(i));if(i===state.frames.length-1)b.setAttribute("aria-current","page");crumbs.append(b);}}
+      if(!item)return;
+      const vertical=board.clientWidth<620;state.vertical=vertical;const children=current.mode==="children"?[...new Set(item.children)]:[];
+      const childItems=children.map(id=>entities.get(id)||{id,label:id,missing:true});const ids=new Set(children);
+      const links=current.mode==="children"?edges.filter(e=>ids.has(e.source)&&ids.has(e.target)&&entities.get(e.source)?.category==="box"&&entities.get(e.target)?.category==="box"&&e.type!=="contains"):[];
+      const layout=children.length?childLayout(childItems,links,vertical):{positions:new Map(),width:260,height:110};
+      const input={x:30,y:0,width:190,height:100},middle={x:0,y:0,width:layout.width,height:layout.height},output={x:0,y:0,width:190,height:100};
+      if(vertical){const worldWidth=Math.max(320,middle.width+60);input.x=(worldWidth-input.width)/2;input.y=30;middle.x=(worldWidth-middle.width)/2;middle.y=185;output.x=input.x;output.y=middle.y+middle.height+55;state.bounds={width:worldWidth,height:output.y+output.height+32};}
+      else{middle.x=input.x+input.width+85;output.x=middle.x+middle.width+85;const centerY=Math.max(125,middle.height/2+30);input.y=centerY-input.height/2;middle.y=centerY-middle.height/2;output.y=input.y;state.bounds={width:output.x+output.width+30,height:Math.max(300,middle.height+60)};}
+      // Boundary arrows describe this process's declared interface, not a guessed
+      // route between a particular input and a particular child.
+      lineBetween(input,middle,vertical);lineBetween(middle,output,vertical);
+      if(children.length){scene.append(svg("rect",{class:"scope-frame",x:middle.x,y:middle.y,width:middle.width,height:middle.height,rx:18}),svg("text",{class:"scope-name",x:middle.x+22,y:middle.y+24},item.label));
+        for(const edge of links){const a={...layout.positions.get(edge.source)},b={...layout.positions.get(edge.target)};a.x+=middle.x;a.y+=middle.y;b.x+=middle.x;b.y+=middle.y;
+          if(edge.source===edge.target){scene.append(svg("path",{class:"diagram-link",d:`M ${a.x+a.width-25} ${a.y} C ${a.x+a.width+30} ${a.y-25},${a.x+a.width+30} ${a.y+55},${a.x+a.width} ${a.y+55}`,"data-edge":edge.type,"marker-end":"url(#arrow)"}));}
+          else lineBetween(a,b,vertical,{"data-edge":edge.type,"stroke-dasharray":edge.type==="calls"?"":"5 4"});
+        }
+        for(const child of childItems){const p={...layout.positions.get(child.id)};p.x+=middle.x;p.y+=middle.y;drawNode(child.id,child.label,"Process",p,key=>drill(child.id,key),"process",`process:${child.id}`);}
+      }else drawNode(item.id,item.label,"Process",middle,key=>drill(item.id,key),"process",`process:${item.id}`);
+      for(const[direction,position,caption]of[["inputs",input,"Input"],["outputs",output,"Output"]]){
+        const ports=item[direction],label=ports.length===1?(entities.get(ports[0].dataStructure)?.label||ports[0].name):ports.length?caption+"s":"Not documented";
+        drawNode(`${item.id}:${direction}`,label,caption,position,key=>showCard({kind:"ports",id:item.id,direction},key),direction,`${direction}:${item.id}`);
+      }
+      requestAnimationFrame(()=>{if(restore&&current.camera){state.camera={...current.camera};camera();}else fit();if(activeKey)focusKey(activeKey);});
+    }
+    function currentContext(){return state.cardTrail.at(-1);}
+    function showCard(context,key){interact();state.cardOrigin=key||null;state.cardTrail=[{...context,open:new Set()}];$("detail-card").hidden=false;$("stage").classList.add("with-card");renderCard();requestAnimationFrame(()=>{$("card-title").focus({preventScroll:true});fit();});}
+    function openType(id){const existing=state.cardTrail.findIndex(ctx=>ctx.kind==="entity"&&ctx.id===id);if(existing>=0)state.cardTrail.length=existing+1;else state.cardTrail.push({kind:entities.has(id)?"entity":"missing",id,open:new Set()});renderCard();$("card-title").focus({preventScroll:true});}
+    function closeCard(restoreFocus=true){if($("detail-card").hidden)return;const key=state.cardOrigin;state.cardTrail=[];$("detail-card").hidden=true;$("stage").classList.remove("with-card");$("card-content").replaceChildren();if(restoreFocus){requestAnimationFrame(fit);focusKey(key);}}
+    function disclosure(label,makeBody,key,context=currentContext()){
+      const section=el("details");section.dataset.section=key;section.append(el("summary",null,label));let built=false;
+      function build(){if(built)return;built=true;const body=el("div","section-content");makeBody(body);section.append(body);}
+      section.addEventListener("toggle",()=>{if(section.open){context?.open.add(key);build();}else context?.open.delete(key);});
+      if(context?.open.has(key)){section.open=true;build();}return section;
+    }
+    function sourceNodes(values){const fragment=document.createDocumentFragment();for(const source of list(values)){const row=el("div","source");if(source.kind==="chat")row.append(el("code",null,`Chat ${source.threadId||"?"} / ${source.turnId||"?"}`),el("small",null,`${source.itemId||"?"} · ${source.role||"role unknown"} · ${source.verification||"unverified"}`));else row.append(el("code",null,`${source.path||"Source unspecified"}${source.line?":"+source.line:""}`),el("small",null,source.symbol||source.verification||"File reference"));if(source.excerpt)row.append(el("blockquote",null,source.excerpt));fragment.append(row);}return fragment;}
+    function decisionNode(choice,key){const block=el("div","decision");block.append(badge(names[origin(choice.origin)],origin(choice.origin)),el("p",null,choice.summary||"Decision summary unavailable."));
+      block.append(disclosure("Decision evidence",body=>{body.append(sourceNodes(choice.sources));if(!list(choice.sources).length)body.append(el("p","muted","No verified attribution source is recorded."));},`${key}:evidence`));
+      block.append(disclosure("User approval",body=>{body.append(badge(choice.approval?.status||"unknown"),sourceNodes(choice.approval?.sources));if(choice.origin==="ai_defined"&&choice.approval?.status==="approved")body.append(el("p","muted","The proposal retains AI origin; the user's approval is recorded separately."));},`${key}:approval`));return block;
+    }
+    function metadata(record,container,prefix){
+      container.append(disclosure("Decisions & ownership",body=>{const kind=origin(record.provenance);body.append(badge(names[kind],kind));if(record.state)body.append(badge(record.state));const choices=choiceRecords(record);for(const choice of choices)body.append(decisionNode(choice,`${prefix}:${choice.id}`));if(!choices.length)body.append(el("p","muted","No decision evidence is recorded here. Implementation authorship alone does not establish who chose a behavior."));},`${prefix}:decisions`));
+      container.append(disclosure("Sources",body=>{body.append(badge(record.evidence||"unknown"),sourceNodes(record.sources));if(!list(record.sources).length)body.append(el("p","muted","No source reference is supplied for this item."));},`${prefix}:sources`));
+    }
+    function portList(ports,body,prefix){if(!ports.length){body.append(el("p","muted","No signature is documented."));return;}ports.forEach((port,index)=>{const row=el("div","port-row");row.append(el("strong",null,port.name));if(port.type)row.append(el("small",null,port.type));if(port.dataStructure)row.append(button(entities.get(port.dataStructure)?.label||port.dataStructure,()=>openType(port.dataStructure),"type-link"));if(port.description)row.append(el("p",null,port.description));metadata(port,row,`${prefix}:${index}`);body.append(row);});}
+    function fieldsFor(item,container){
+      if(!item.fields.length)container.append(el("p","muted","No fields are documented for this type."));
+      item.fields.forEach((field,index)=>{
+        const context=currentContext(),key=`field:${item.id}:${index}`,row=el("details","field");row.dataset.field=field.name;const summary=el("summary");summary.append(el("span","field-name",field.name),el("code",null,field.type||"Type unknown"));row.append(summary);let built=false;
+        function build(){if(built)return;built=true;const body=el("div","section-content");if(field.description)body.append(el("p",null,field.description));if(field.dataStructure)body.append(button(`Open ${entities.get(field.dataStructure)?.label||field.dataStructure}`,()=>openType(field.dataStructure),"type-link"));metadata(field,body,key);row.append(body);}
+        row.addEventListener("toggle",()=>{if(row.open){context?.open.add(key);build();}else context?.open.delete(key);});if(context.open.has(key)){row.open=true;build();}container.append(row);
+      });
+    }
+    function entityContents(item,body){
+      if(item.category==="data")fieldsFor(item,body);else{body.append(el("p",null,item.process||item.description||"No process description is documented."));body.append(disclosure("Inputs",node=>portList(item.inputs,node,`${item.id}:inputs`),`${item.id}:inputs`),disclosure("Outputs",node=>portList(item.outputs,node,`${item.id}:outputs`),`${item.id}:outputs`));}
+      metadata(item,body,item.id);
+      if(item.implementation)body.append(disclosure("Implementation",node=>{const implementation=item.implementation;node.append(el("code",null,[implementation.path,implementation.symbol].filter(Boolean).join(" · ")),badge(`Authorship: ${names[origin(implementation.provenance)]}`,origin(implementation.provenance)));if(implementation.code){const pre=el("pre");pre.append(el("code",null,implementation.code));node.append(pre);}node.append(sourceNodes(implementation.sources));},`${item.id}:implementation`));
+      const related=edges.filter(edge=>edge.source===item.id||edge.target===item.id);
+      if(related.length)body.append(disclosure("Connections",node=>{for(const edge of related){const other=entities.get(edge.source===item.id?edge.target:edge.source),row=el("div","related-row");row.append(button(other.label,()=>{if(other.category==="data")openType(other.id);else{const key=state.cardOrigin;closeCard(false);drill(other.id,key);}},"type-link"),el("small",null,edge.label));node.append(row);}},`${item.id}:connections`));
+    }
+    function renderCard(){
+      const context=currentContext();if(!context)return;$("card-content").replaceChildren();$("card-back").hidden=state.cardTrail.length<2;const item=entities.get(context.id),body=$("card-content");
+      if(!item){$("card-kind").textContent="Unavailable definition";$("card-title").textContent=context.id;body.append(el("p","muted","This reference has no definition in the snapshot. Available portions of the model remain usable."));return;}
+      if(context.kind==="ports"){
+        const ports=item[context.direction];$("card-kind").textContent=context.direction==="inputs"?"Input":"Output";
+        if(ports.length===1&&entities.get(ports[0].dataStructure)?.category==="data"){
+          const type=entities.get(ports[0].dataStructure);$("card-title").textContent=type.label;fieldsFor(type,body);body.append(disclosure("Port definition",node=>portList(ports,node,`${item.id}:${context.direction}`),"port-definition"));metadata(type,body,type.id);
+          const related=edges.filter(e=>e.source===type.id||e.target===type.id);if(related.length)body.append(disclosure("Connections",node=>{for(const edge of related){const target=entities.get(edge.source===type.id?edge.target:edge.source);node.append(button(`${edge.label}: ${target.label}`,()=>target.category==="data"?openType(target.id):showCard({kind:"entity",id:target.id},state.cardOrigin),"type-link"));}},`${type.id}:connections`));
+        }else{$("card-title").textContent=context.direction==="inputs"?"Inputs":"Outputs";portList(ports,body,`${item.id}:${context.direction}`);}
+      }else{$("card-kind").textContent=item.category==="data"?"Data structure":"Process";$("card-title").textContent=item.label;entityContents(item,body);}
+    }
+    function matches(item,query,owner,evidence){const nested=[...item.inputs,...item.outputs,...item.fields],choices=[...choiceRecords(item),...nested.flatMap(choiceRecords)];const haystack=[item.label,item.description,item.process,...nested.flatMap(f=>[f.name,f.type]),...choices.map(d=>d.summary),...item.sources.map(s=>s.path)].join(" ").toLowerCase();return(!query||haystack.includes(query))&&(owner==="all"||item.provenance===owner||nested.some(f=>origin(f.provenance)===owner)||choices.some(d=>origin(d.origin)===owner))&&(evidence==="all"||(item.evidence||"unknown")===evidence);}
+    function search(){const results=$("search-results");results.replaceChildren();const query=$("search").value.trim().toLowerCase(),owner=$("owner-filter").value,evidence=$("evidence-filter").value;const items=[...entities.values()].filter(item=>matches(item,query,owner,evidence));for(const item of items){const pick=button(item.label,()=>{$("find-dialog").close();if(item.category==="data")showCard({kind:"entity",id:item.id},"menu");else drill(item.id,"menu");},"search-result");pick.dataset.id=item.id;pick.append(el("small",null,item.category==="data"?"Data":"Process"));results.append(pick);}if(!items.length)results.append(el("p","empty-message","No matching items. Try another search or filter."));}
+    function closeMenu(){$("more-menu").open=false;}
+    function openFind(){interact();closeMenu();search();$("find-dialog").showModal();$("search").focus();}
+    function aboutSection(title,values,format){const section=el("details","about-details");section.append(el("summary",null,title));let built=false;section.addEventListener("toggle",()=>{if(!section.open||built)return;built=true;const ul=el("ul");for(const value of values)ul.append(el("li",null,format(value)));if(!values.length)ul.append(el("li",null,"None recorded."));section.append(ul);});return section;}
+    function openAbout(){
+      interact();closeMenu();const content=$("about-content");content.replaceChildren();if(raw.project?.summary)content.append(el("p",null,raw.project.summary));
+      const coverage=raw.coverage||{},counts=coverage.counts||{},history=raw.history||{};
+      content.append(aboutSection("Coverage",[`${counts.inspected||0} of ${counts.eligible||0} eligible files inspected. ${coverage.complete?"Source coverage is complete.":"Source coverage is incomplete or unverified."}`,...list(coverage.files).map(f=>`${f.path} · ${f.status}${f.note?" · "+f.note:""}`)],text),
+        aboutSection("Project history",[`${history.status||"unavailable"} · ${history.threadCount||0} project chats`,...list(history.warnings)],text),
+        aboutSection("Excluded inputs",list(coverage.excluded),entry=>`${entry.path} · ${entry.reason}`),
+        aboutSection("Notes and unresolved references",[...new Set(notes)],text),
+        aboutSection("How to read this map",["Observed means read in source, not measured at runtime. Documented facts come from specifications. Inferred relationships are interpretations.","User, AI, Mixed, and Unknown record decision origin. An approved AI proposal keeps AI origin; approval is a separate record.","A parent's origin does not assign ownership to its children. Missing evidence stays Unknown.","This is an offline snapshot. Ask the plugin to refresh it when the project changes."],text));
+      if(raw.project?.generatedAt)content.append(el("p","muted",`Snapshot: ${new Date(raw.project.generatedAt).toLocaleString()}`));$("about-dialog").showModal();
+    }
+    $("more-menu").querySelector("summary").dataset.focusKey="menu";
+    $("back").addEventListener("click",goBack);$("scope-details").addEventListener("click",()=>showCard({kind:"entity",id:frame().id},"scope-details"));$("scope-details").dataset.focusKey="scope-details";
+    $("card-close").addEventListener("click",()=>closeCard());$("card-back").addEventListener("click",()=>{if(state.cardTrail.length>1){state.cardTrail.pop();renderCard();$("card-title").focus({preventScroll:true});}});
+    $("find-button").addEventListener("click",openFind);$("about-button").addEventListener("click",openAbout);$("close-find").addEventListener("click",()=>$("find-dialog").close());$("close-about").addEventListener("click",()=>$("about-dialog").close());
+    for(const id of["search","owner-filter","evidence-filter"])$(id).addEventListener(id==="search"?"input":"change",search);
+    $("overview-button").addEventListener("click",()=>{closeMenu();overview();});$("fit").addEventListener("click",()=>{interact();closeMenu();fit();});$("zoom-in").addEventListener("click",()=>{interact();zoom(1.2);});$("zoom-out").addEventListener("click",()=>{interact();zoom(1/1.2);});
+    document.addEventListener("pointerdown",event=>{if(!$("more-menu").contains(event.target))closeMenu();});
+    document.addEventListener("keydown",event=>{if($("find-dialog").open||$("about-dialog").open)return;if(event.key==="Escape"){if(!$("detail-card").hidden){event.preventDefault();closeCard();}else closeMenu();}if(event.key==="/"&&!event.target.matches("input,textarea,select")){event.preventDefault();openFind();}});
+    graph.addEventListener("wheel",event=>{event.preventDefault();interact();const rect=graph.getBoundingClientRect();zoom(Math.exp(-event.deltaY*.0015),event.clientX-rect.left,event.clientY-rect.top);},{passive:false});
+    graph.addEventListener("pointerdown",event=>{if(event.button!==0||event.target.closest("[data-focus-key]"))return;interact();state.pan={id:event.pointerId,x:event.clientX,y:event.clientY,cx:state.camera.x,cy:state.camera.y};graph.setPointerCapture(event.pointerId);graph.classList.add("panning");});
+    graph.addEventListener("pointermove",event=>{if(!state.pan||state.pan.id!==event.pointerId)return;state.camera.x=state.pan.cx+event.clientX-state.pan.x;state.camera.y=state.pan.cy+event.clientY-state.pan.y;camera();saveCamera();});
+    const endPan=()=>{state.pan=null;graph.classList.remove("panning");};for(const name of["pointerup","pointercancel","lostpointercapture"])graph.addEventListener(name,endPan);
+    graph.addEventListener("keydown",event=>{if(event.target!==graph)return;const delta={ArrowLeft:[30,0],ArrowRight:[-30,0],ArrowUp:[0,30],ArrowDown:[0,-30]}[event.key];if(delta){event.preventDefault();interact();state.camera.x+=delta[0];state.camera.y+=delta[1];camera();saveCamera();}if(["+","=","-","Home"].includes(event.key)){event.preventDefault();interact();event.key==="Home"?fit():zoom(event.key==="-"?1/1.2:1.2);}});
+    let resizeFrame;new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if((board.clientWidth<620)!==state.vertical)renderDiagram();else fit();});}).observe(board);
+    renderDiagram();
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+id: Quote
+kind: data_structure
+provenance: ai_defined
+fields:
+  - name: total
+    type: number
+  - name: currency
+    type: string

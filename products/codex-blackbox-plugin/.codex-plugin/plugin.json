@@ -1,0 +1,19 @@
+{
+  "name": "codex-blackbox",
+  "version": "0.2.0",
+  "description": "Recursive project behavior, data, and user/AI decision visualization.",
+  "skills": "./skills/",
+  "requires_local_executor": true,
+  "interface": {
+    "displayName": "BlackBox Project",
+    "shortDescription": "Understand project behavior, data, and user/AI decisions.",
+    "longDescription": "Explore source and local project chats through an offline diagram that reveals children, data, and decision evidence on click.",
+    "developerName": "BlackBoxApproach",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read project source",
+      "Read local project chats",
+      "Generate local visualizations"
+    ]
+  }
+}

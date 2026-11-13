@@ -1,0 +1,27 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "codex-blackbox",
+  "version": "0.2.0",
+  "description": "Explore projects with a simple input → process → output diagram. Click to reveal children, data, and decision evidence.",
+  "extensions": {
+    "com.openai": {
+      "requires_local_executor": true,
+      "interface": {
+        "displayName": "BlackBox Project",
+        "shortDescription": "Understand project behavior, data, and user/AI decisions.",
+        "longDescription": "Read source and available local project chats, then explore an offline input → process → output diagram. Click a process to drill into its children or click data for a compact detail card. Decisions, approvals, and source evidence appear only when requested.",
+        "developerName": "BlackBoxApproach",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Read project source",
+          "Read local project chats",
+          "Generate local visualizations"
+        ],
+        "defaultPrompt": [
+          "Visualize this whole project as BlackBox input → process → output boxes, including children, data structures, and user versus AI decisions."
+        ],
+        "brandColor": "#087f79"
+      }
+    }
+  }
+}

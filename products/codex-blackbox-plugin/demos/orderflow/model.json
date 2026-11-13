@@ -1,0 +1,912 @@
+{
+  "format": "codex-blackbox",
+  "version": 1,
+  "project": {
+    "name": "Orderflow",
+    "summary": "Synthetic source + synthetic chats. Follow an order through its child processes, shared data, and evidenced decisions.",
+    "rootBox": "orderflow",
+    "generatedAt": "2026-11-13T10:41:52.222764+00:00"
+  },
+  "boxes": [
+    {
+      "id": "orderflow",
+      "label": "Orderflow system",
+      "kind": "system",
+      "description": "Accept an order and return a local confirmation.",
+      "process": "Validate → reserve → record payment → save → queue confirmation.",
+      "children": [
+        "checkout",
+        "orders"
+      ],
+      "inputs": [
+        {
+          "name": "request",
+          "type": "OrderRequest",
+          "dataStructure": "OrderRequest",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "order",
+          "type": "Order",
+          "dataStructure": "Order",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "evidence": "documented",
+      "provenance": "mixed",
+      "decisionIds": [
+        "required-input",
+        "local-confirmation",
+        "order-sequence"
+      ],
+      "sources": [
+        {
+          "kind": "file",
+          "path": "README.md",
+          "line": 7,
+          "verification": "verified"
+        }
+      ]
+    },
+    {
+      "id": "checkout",
+      "label": "Checkout handler",
+      "kind": "entry point",
+      "description": "Accepts a request, validates it, and returns the order service result.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/checkout.js",
+          "line": 5,
+          "symbol": "submitOrder",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "orderRequest",
+          "type": "OrderRequest",
+          "dataStructure": "OrderRequest",
+          "provenance": "human_defined",
+          "decisionIds": [
+            "required-input"
+          ],
+          "sources": [],
+          "evidence": "unknown"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "order",
+          "type": "Order",
+          "dataStructure": "Order",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "process": "Accepts a request, validates it, and returns the order service result.",
+      "children": [
+        "validation"
+      ],
+      "implementation": {
+        "path": "src/checkout.js",
+        "symbol": "submitOrder",
+        "sources": [],
+        "evidence": "unknown",
+        "provenance": "unknown",
+        "decisionIds": []
+      },
+      "provenance": "human_defined",
+      "decisionIds": [
+        "required-input"
+      ]
+    },
+    {
+      "id": "validation",
+      "label": "Order validation",
+      "kind": "validation",
+      "description": "Checks that an order has items and a contact email, then calculates its total.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/validation.js",
+          "line": 2,
+          "symbol": "validateOrder",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "orderRequest",
+          "type": "OrderRequest",
+          "dataStructure": "OrderRequest",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "validatedOrder",
+          "type": "ValidatedOrder",
+          "dataStructure": "ValidatedOrder",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "process": "Checks that an order has items and a contact email, then calculates its total.",
+      "children": [],
+      "implementation": {
+        "path": "src/validation.js",
+        "symbol": "validateOrder",
+        "sources": [],
+        "evidence": "unknown",
+        "provenance": "unknown",
+        "decisionIds": []
+      },
+      "provenance": "human_defined",
+      "decisionIds": [
+        "required-input"
+      ]
+    },
+    {
+      "id": "orders",
+      "label": "Order service",
+      "kind": "orchestration",
+      "description": "Coordinates stock reservation, payment recording, persistence, and confirmation.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 7,
+          "symbol": "createOrder",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "validatedOrder",
+          "type": "ValidatedOrder",
+          "dataStructure": "ValidatedOrder",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "order",
+          "type": "Order",
+          "dataStructure": "Order",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "process": "Coordinates stock reservation, payment recording, persistence, and confirmation.",
+      "children": [
+        "inventory",
+        "payments",
+        "store",
+        "notifications"
+      ],
+      "implementation": {
+        "path": "src/orders.js",
+        "symbol": "createOrder",
+        "sources": [],
+        "evidence": "unknown",
+        "provenance": "unknown",
+        "decisionIds": []
+      },
+      "provenance": "mixed",
+      "decisionIds": [
+        "order-sequence"
+      ]
+    },
+    {
+      "id": "inventory",
+      "label": "Inventory",
+      "kind": "service",
+      "description": "Creates a local reservation containing the requested item SKUs.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/inventory.js",
+          "line": 4,
+          "symbol": "reserveInventory",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "validatedOrder",
+          "type": "ValidatedOrder",
+          "dataStructure": "ValidatedOrder",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "reservation",
+          "type": "Reservation",
+          "dataStructure": "Reservation",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "process": "Creates a local reservation containing the requested item SKUs.",
+      "children": [],
+      "implementation": {
+        "path": "src/inventory.js",
+        "symbol": "reserveInventory",
+        "sources": [],
+        "evidence": "unknown",
+        "provenance": "unknown",
+        "decisionIds": []
+      },
+      "provenance": "unknown",
+      "decisionIds": []
+    },
+    {
+      "id": "payments",
+      "label": "Payments",
+      "kind": "integration",
+      "description": "Records a synthetic payment receipt for the validated total. No payment is transmitted.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/payments.js",
+          "line": 4,
+          "symbol": "chargePayment",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "validatedOrder",
+          "type": "ValidatedOrder",
+          "dataStructure": "ValidatedOrder",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paymentReceipt",
+          "type": "PaymentReceipt",
+          "dataStructure": "PaymentReceipt",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "process": "Records a synthetic payment receipt for the validated total. No payment is transmitted.",
+      "children": [],
+      "implementation": {
+        "path": "src/payments.js",
+        "symbol": "chargePayment",
+        "sources": [],
+        "evidence": "unknown",
+        "provenance": "unknown",
+        "decisionIds": []
+      },
+      "provenance": "unknown",
+      "decisionIds": []
+    },
+    {
+      "id": "store",
+      "label": "Order repository",
+      "kind": "storage",
+      "description": "Stores a copy of each order in an in-memory Map and returns the saved record.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/store.js",
+          "line": 4,
+          "symbol": "saveOrder",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "order",
+          "type": "Order",
+          "dataStructure": "Order",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "order",
+          "type": "Order",
+          "dataStructure": "Order",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "process": "Stores a copy of each order in an in-memory Map and returns the saved record.",
+      "children": [],
+      "implementation": {
+        "path": "src/store.js",
+        "symbol": "saveOrder",
+        "sources": [],
+        "evidence": "unknown",
+        "provenance": "unknown",
+        "decisionIds": []
+      },
+      "provenance": "unknown",
+      "decisionIds": []
+    },
+    {
+      "id": "notifications",
+      "label": "Confirmation outbox",
+      "kind": "notification",
+      "description": "Appends a confirmation record to a local outbox. No message is sent.",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/notifications.js",
+          "line": 4,
+          "symbol": "sendConfirmation",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "inputs": [
+        {
+          "name": "order",
+          "type": "Order",
+          "dataStructure": "Order",
+          "provenance": "unknown",
+          "sources": [],
+          "evidence": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "outputs": [],
+      "process": "Appends a confirmation record to a local outbox. No message is sent.",
+      "children": [],
+      "implementation": {
+        "path": "src/notifications.js",
+        "symbol": "sendConfirmation",
+        "sources": [],
+        "evidence": "unknown",
+        "provenance": "unknown",
+        "decisionIds": []
+      },
+      "provenance": "ai_defined",
+      "decisionIds": [
+        "local-confirmation"
+      ]
+    }
+  ],
+  "dataStructures": [
+    {
+      "id": "OrderRequest",
+      "label": "Order request",
+      "description": "The payload supplied to checkout.",
+      "evidence": "documented",
+      "sources": [
+        {
+          "path": "src/types.js",
+          "line": 2,
+          "symbol": "OrderRequest",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "fields": [
+        {
+          "name": "items",
+          "type": "Array<{sku: string, quantity: number, unitPrice: number}>",
+          "provenance": "human_defined",
+          "decisionIds": [
+            "required-input"
+          ],
+          "sources": [],
+          "evidence": "unknown"
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "provenance": "human_defined",
+          "decisionIds": [
+            "required-input"
+          ],
+          "sources": [],
+          "evidence": "unknown"
+        }
+      ],
+      "provenance": "unknown",
+      "decisionIds": []
+    },
+    {
+      "id": "ValidatedOrder",
+      "label": "Validated order",
+      "description": "Checked items, contact email, and a calculated total.",
+      "evidence": "documented",
+      "sources": [
+        {
+          "path": "src/types.js",
+          "line": 8,
+          "symbol": "ValidatedOrder",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "fields": [
+        {
+          "name": "items",
+          "type": "Array<{sku: string, quantity: number, unitPrice: number}>",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "total",
+          "type": "number",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "provenance": "unknown",
+      "decisionIds": []
+    },
+    {
+      "id": "Reservation",
+      "label": "Stock reservation",
+      "description": "The local reservation created by inventory.",
+      "evidence": "documented",
+      "sources": [
+        {
+          "path": "src/types.js",
+          "line": 15,
+          "symbol": "Reservation",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "skus",
+          "type": "string[]",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "provenance": "unknown",
+      "decisionIds": []
+    },
+    {
+      "id": "PaymentReceipt",
+      "label": "Payment receipt",
+      "description": "A synthetic receipt recorded by the payment module.",
+      "evidence": "documented",
+      "sources": [
+        {
+          "path": "src/types.js",
+          "line": 21,
+          "symbol": "PaymentReceipt",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "provenance": "unknown",
+      "decisionIds": []
+    },
+    {
+      "id": "Order",
+      "label": "Order",
+      "description": "The persisted order returned to checkout and used by the confirmation outbox.",
+      "evidence": "documented",
+      "sources": [
+        {
+          "path": "src/types.js",
+          "line": 28,
+          "symbol": "Order",
+          "kind": "file",
+          "verification": "verified"
+        }
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "total",
+          "type": "number",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "reservationId",
+          "type": "string",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "paymentId",
+          "type": "string",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "provenance": "unknown",
+      "decisionIds": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "checkout",
+      "target": "validation",
+      "type": "calls",
+      "label": "validate",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/checkout.js",
+          "line": 6,
+          "kind": "file",
+          "verification": "verified"
+        }
+      ]
+    },
+    {
+      "source": "checkout",
+      "target": "orders",
+      "type": "calls",
+      "label": "create order",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/checkout.js",
+          "line": 7,
+          "kind": "file",
+          "verification": "verified"
+        }
+      ]
+    },
+    {
+      "source": "orders",
+      "target": "inventory",
+      "type": "calls",
+      "label": "reserve",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 8,
+          "kind": "file",
+          "verification": "verified"
+        }
+      ]
+    },
+    {
+      "source": "orders",
+      "target": "payments",
+      "type": "calls",
+      "label": "record payment",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 9,
+          "kind": "file",
+          "verification": "verified"
+        }
+      ]
+    },
+    {
+      "source": "orders",
+      "target": "store",
+      "type": "calls",
+      "label": "persist",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 10,
+          "kind": "file",
+          "verification": "verified"
+        }
+      ]
+    },
+    {
+      "source": "orders",
+      "target": "notifications",
+      "type": "calls",
+      "label": "confirm",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 18,
+          "kind": "file",
+          "verification": "verified"
+        }
+      ]
+    },
+    {
+      "source": "Reservation",
+      "target": "orders",
+      "type": "consumes",
+      "label": "reservation result",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 14,
+          "kind": "file",
+          "verification": "verified"
+        }
+      ]
+    },
+    {
+      "source": "PaymentReceipt",
+      "target": "orders",
+      "type": "consumes",
+      "label": "receipt result",
+      "evidence": "observed",
+      "sources": [
+        {
+          "path": "src/orders.js",
+          "line": 15,
+          "kind": "file",
+          "verification": "verified"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "required-input",
+      "summary": "Reject an empty order or missing contact email.",
+      "origin": "human_defined",
+      "sources": [
+        {
+          "kind": "chat",
+          "threadId": "synthetic-demo",
+          "turnId": "t1",
+          "itemId": "user-contract",
+          "excerpt": "Require at least one order item and a contact email.",
+          "verification": "verified",
+          "role": "user"
+        }
+      ],
+      "approval": {
+        "status": "unknown",
+        "sources": []
+      }
+    },
+    {
+      "id": "local-confirmation",
+      "summary": "Queue confirmations in a local in-memory outbox.",
+      "origin": "ai_defined",
+      "sources": [
+        {
+          "kind": "chat",
+          "threadId": "synthetic-demo",
+          "turnId": "t1",
+          "itemId": "ai-outbox",
+          "excerpt": "I propose a local in-memory outbox for confirmation notifications.",
+          "verification": "verified",
+          "role": "assistant"
+        }
+      ],
+      "approval": {
+        "status": "approved",
+        "sources": [
+          {
+            "kind": "chat",
+            "threadId": "synthetic-demo",
+            "turnId": "t2",
+            "itemId": "user-approval",
+            "excerpt": "Yes, use the local in-memory outbox for confirmations.",
+            "verification": "verified",
+            "role": "user"
+          }
+        ]
+      }
+    },
+    {
+      "id": "order-sequence",
+      "summary": "Reserve first, then coordinate a synchronous payment and persistence sequence.",
+      "origin": "mixed",
+      "sources": [
+        {
+          "kind": "chat",
+          "threadId": "synthetic-demo",
+          "turnId": "t3",
+          "itemId": "user-order",
+          "excerpt": "Reserve stock before recording payment.",
+          "verification": "verified",
+          "role": "user"
+        },
+        {
+          "kind": "chat",
+          "threadId": "synthetic-demo",
+          "turnId": "t3",
+          "itemId": "ai-order",
+          "excerpt": "I will coordinate reservation and payment synchronously before saving the order.",
+          "verification": "verified",
+          "role": "assistant"
+        }
+      ],
+      "approval": {
+        "status": "unknown",
+        "sources": []
+      }
+    }
+  ],
+  "coverage": {
+    "files": [
+      {
+        "path": "README.md",
+        "status": "inspected"
+      },
+      {
+        "path": "package.json",
+        "status": "inspected"
+      },
+      {
+        "path": "src/checkout.js",
+        "status": "inspected"
+      },
+      {
+        "path": "src/inventory.js",
+        "status": "inspected"
+      },
+      {
+        "path": "src/notifications.js",
+        "status": "inspected"
+      },
+      {
+        "path": "src/orders.js",
+        "status": "inspected"
+      },
+      {
+        "path": "src/payments.js",
+        "status": "inspected"
+      },
+      {
+        "path": "src/store.js",
+        "status": "inspected"
+      },
+      {
+        "path": "src/types.js",
+        "status": "inspected"
+      },
+      {
+        "path": "src/validation.js",
+        "status": "inspected"
+      }
+    ],
+    "excluded": [],
+    "counts": {
+      "eligible": 10,
+      "inspected": 10,
+      "unresolved": 0,
+      "pending": 0
+    },
+    "complete": true
+  },
+  "warnings": [
+    "Curated semantic model of the included synthetic code; relationships are source-based, not measured runtime traces.",
+    "Decision evidence in this demonstration is explicitly synthetic, not recovered historical attribution."
+  ],
+  "history": {
+    "status": "available",
+    "threadCount": 1,
+    "warnings": [
+      "Decision evidence in this demonstration is explicitly synthetic, not recovered historical attribution."
+    ]
+  }
+}

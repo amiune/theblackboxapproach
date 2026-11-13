@@ -1,0 +1,16 @@
+id: calculate_total
+name: Calculate total
+kind: black_box
+box_type: logic
+state: abstract
+provenance: ai_defined
+intent: Sum quantity times unit price for each line item.
+signature:
+  inputs:
+    - name: request
+      data_ref: ../data/quote_request.yaml
+  outputs:
+    - name: quote
+      data_ref: ../data/quote.yaml
+children: []
+algorithm: RETURN the summed total and the request currency

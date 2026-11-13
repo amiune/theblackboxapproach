@@ -1,0 +1,14 @@
+id: validate_items
+name: Validate items
+kind: black_box
+box_type: logic
+state: abstract
+provenance: ai_defined
+intent: Verify positive quantities and nonnegative prices.
+signature:
+  inputs:
+    - name: request
+      data_ref: ../data/quote_request.yaml
+  outputs: []
+children: []
+algorithm: RETURN when all item quantities and prices are valid

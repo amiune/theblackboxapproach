@@ -1,0 +1,284 @@
+{
+  "format": "codex-blackbox",
+  "version": 1,
+  "project": {
+    "name": "Quote Engine",
+    "summary": "An existing BlackBoxApproach YAML design, preserving recorded AI provenance and implementation state.",
+    "rootBox": "quote_order",
+    "generatedAt": "2026-11-13T10:41:52.245005+00:00"
+  },
+  "boxes": [
+    {
+      "id": "quote_order",
+      "label": "Quote order",
+      "kind": "logic",
+      "description": "Coordinate item validation and total calculation.",
+      "process": "Coordinate item validation and total calculation.",
+      "state": "partial",
+      "evidence": "documented",
+      "provenance": "ai_defined",
+      "sources": [
+        {
+          "kind": "file",
+          "path": "blackboxes/boxes/quote_order.yaml",
+          "line": 6,
+          "recordedProvenance": "ai_defined",
+          "verification": "verified"
+        }
+      ],
+      "children": [
+        "validate_items",
+        "calculate_total"
+      ],
+      "inputs": [
+        {
+          "name": "request",
+          "type": "QuoteRequest",
+          "dataStructure": "QuoteRequest",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "quote",
+          "type": "Quote",
+          "dataStructure": "Quote",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "decisionIds": []
+    },
+    {
+      "id": "validate_items",
+      "label": "Validate items",
+      "kind": "logic",
+      "description": "Verify positive quantities and nonnegative prices.",
+      "process": "Verify positive quantities and nonnegative prices.",
+      "state": "abstract",
+      "evidence": "documented",
+      "provenance": "ai_defined",
+      "sources": [
+        {
+          "kind": "file",
+          "path": "blackboxes/boxes/validate_items.yaml",
+          "line": 6,
+          "recordedProvenance": "ai_defined",
+          "verification": "verified"
+        }
+      ],
+      "children": [],
+      "inputs": [
+        {
+          "name": "request",
+          "type": "QuoteRequest",
+          "dataStructure": "QuoteRequest",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "outputs": [],
+      "decisionIds": []
+    },
+    {
+      "id": "calculate_total",
+      "label": "Calculate total",
+      "kind": "logic",
+      "description": "Sum quantity times unit price for each line item.",
+      "process": "Sum quantity times unit price for each line item.",
+      "state": "abstract",
+      "evidence": "documented",
+      "provenance": "ai_defined",
+      "sources": [
+        {
+          "kind": "file",
+          "path": "blackboxes/boxes/calculate_total.yaml",
+          "line": 6,
+          "recordedProvenance": "ai_defined",
+          "verification": "verified"
+        }
+      ],
+      "children": [],
+      "inputs": [
+        {
+          "name": "request",
+          "type": "QuoteRequest",
+          "dataStructure": "QuoteRequest",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "quote",
+          "type": "Quote",
+          "dataStructure": "Quote",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "decisionIds": []
+    }
+  ],
+  "dataStructures": [
+    {
+      "id": "Quote",
+      "label": "Quote",
+      "fields": [
+        {
+          "name": "total",
+          "type": "number",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "provenance": "ai_defined",
+      "evidence": "documented",
+      "sources": [
+        {
+          "kind": "file",
+          "path": "blackboxes/data/quote.yaml",
+          "line": 3,
+          "recordedProvenance": "ai_defined",
+          "verification": "verified"
+        }
+      ],
+      "decisionIds": [],
+      "description": ""
+    },
+    {
+      "id": "QuoteRequest",
+      "label": "QuoteRequest",
+      "fields": [
+        {
+          "name": "items",
+          "type": "{quantity: number, unitPrice: number}[]",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "sources": [],
+          "evidence": "unknown",
+          "provenance": "unknown",
+          "decisionIds": []
+        }
+      ],
+      "provenance": "ai_defined",
+      "evidence": "documented",
+      "sources": [
+        {
+          "kind": "file",
+          "path": "blackboxes/data/quote_request.yaml",
+          "line": 3,
+          "recordedProvenance": "ai_defined",
+          "verification": "verified"
+        }
+      ],
+      "decisionIds": [],
+      "description": ""
+    }
+  ],
+  "decisions": [],
+  "edges": [
+    {
+      "source": "quote_order",
+      "target": "validate_items",
+      "type": "calls",
+      "evidence": "documented",
+      "sources": [
+        {
+          "kind": "file",
+          "path": "blackboxes/boxes/quote_order.yaml",
+          "line": 17,
+          "verification": "verified"
+        }
+      ]
+    },
+    {
+      "source": "quote_order",
+      "target": "calculate_total",
+      "type": "calls",
+      "evidence": "documented",
+      "sources": [
+        {
+          "kind": "file",
+          "path": "blackboxes/boxes/quote_order.yaml",
+          "line": 18,
+          "verification": "verified"
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "files": [
+      {
+        "path": "blackboxes/system.yaml",
+        "status": "inspected"
+      },
+      {
+        "path": "blackboxes/boxes/calculate_total.yaml",
+        "status": "inspected"
+      },
+      {
+        "path": "blackboxes/boxes/quote_order.yaml",
+        "status": "inspected"
+      },
+      {
+        "path": "blackboxes/boxes/validate_items.yaml",
+        "status": "inspected"
+      },
+      {
+        "path": "blackboxes/data/quote.yaml",
+        "status": "inspected"
+      },
+      {
+        "path": "blackboxes/data/quote_request.yaml",
+        "status": "inspected"
+      }
+    ],
+    "excluded": [],
+    "counts": {
+      "eligible": 6,
+      "inspected": 6,
+      "unresolved": 0,
+      "pending": 0
+    },
+    "complete": true
+  },
+  "warnings": [
+    "Leaf boxes are abstract specifications, not verified executable code.",
+    "This fixture has no chat history; displayed provenance is explicitly recorded in YAML."
+  ],
+  "history": {
+    "status": "unavailable",
+    "threadCount": 0,
+    "warnings": [
+      "This fixture has no chat history; displayed provenance is explicitly recorded in YAML."
+    ]
+  }
+}
